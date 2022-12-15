@@ -19,7 +19,7 @@
 <body>
 	<div class="container" align="center">
 <%
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver"); //드라이버로드
 			Connection conn = null;
 			Statement stmt = null;
 			ResultSet rs = null;
@@ -30,9 +30,9 @@
 			String sql = "select * from member where id = '" + id + "'";
 			
 			try {
-				conn = DriverManager.getConnection(url, usr, pwd);
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(sql);
+				conn = DriverManager.getConnection(url, usr, pwd); //커넥션db연결
+				stmt = conn.createStatement(); //sql쿼리 진행
+				rs = stmt.executeQuery(sql); //결과값 처리
 				
 				if(rs.next()) {
 %>
@@ -66,7 +66,7 @@
 <%				
 			} finally {
 				try {
-					if(rs != null) rs.close();
+					if(rs != null) rs.close(); //db 종료
 					if(stmt != null) stmt.close();
 					if(conn != null) conn.close();
 				} catch (Exception e) {
