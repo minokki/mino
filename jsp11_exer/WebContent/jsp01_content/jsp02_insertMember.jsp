@@ -19,10 +19,10 @@
     int count = 0;
     boolean isConn = true;
     
-	String url = "jdbc:mariadb://localhost:3306/myboard";
+	String url = "jdbc:mariadb://192.168.0.123:3306/myboard";
 	String usr = "root";
 	String pwd = "12345";
-	String sql = "insert into board values(?,?,?,?,?,?)";
+	String sql = "insert into board values(?,?,?,now(),0,?)";
 
 	try {
 		conn = DriverManager.getConnection(url, usr, pwd);
@@ -30,9 +30,7 @@
 		pstmt.setString(1, bno);
 		pstmt.setString(2, subject);
 		pstmt.setString(3, writer);
-		pstmt.setString(4, crtdate);
-		pstmt.setString(5, readcnt);
-		pstmt.setString(6, content);
+		pstmt.setString(4, content);
 		count = pstmt.executeUpdate();
 	} catch(Exception e) {
 		isConn = false;
@@ -58,7 +56,7 @@
 <body>
 	<div class="container" align="center">
 	
-		<h1>책 등록하기</h1>
+		<h1>등록하기</h1>
 		
 		<c:choose>
 		
@@ -67,18 +65,16 @@
 				번호   : <%= bno %> <br>
 				제목   : <%= subject %> <br>
 				작성자 : <%= writer %> <br>
-				날짜   : <%= crtdate %> <br>
-				조회수 : <%= readcnt %> <br>
 				내용   : <%= content %> <br>
 			</c:when>
 			<c:otherwise>
-				<h3 class="bg-danger text-white">책 등록이 실패했습니다!!</h3>
+				<h3 class="bg-danger text-white"> 작성이 실패했습니다!!</h3>
 			</c:otherwise>
 		</c:choose>
 		
 		<form action="jsp02_insertForm.jsp">
 			<input type="submit" class="btn btn-info" value="돌아가기">
-			<a href="jsp01_listMember.jsp" class="btn btn-info">책 목록</a>
+			<a href="jsp01_listMember.jsp" class="btn btn-info">목록</a>
 		</form>
 		
 	</div>

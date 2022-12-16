@@ -14,7 +14,7 @@
     int count = 0;
     boolean isConn = true;
 	
-	String url = "jdbc:mariadb://localhost:3306/myboard";
+	String url = "jdbc:mariadb://192.168.0.123:3306/myboard";
 	String usr = "root";
 	String pwd = "12345";
 	String sql = "delete from board where bno = ?";
@@ -49,19 +49,19 @@
 <body>
 	<div class="container" align="center">
 	
-		<h1>등록된 책 삭제</h1>
+		<h1>등록된 게시글 삭제</h1>
 		<%
 			if(count > 0) {
 		%>
-				<h3 class="bg-info text-white"><%= bno %>책의 정보가 성공적으로 삭제되었습니다!!</h3>
+				<h3 class="bg-info text-white"><%= bno %>게시글이 성공적으로 삭제되었습니다!!</h3>
 		<%
 			} else {
 		%>
-				<h3 class="bg-danger text-white">책 정보 삭제실패!!! <%=bno %>를 찾지 못했습니다!!</h3>
+				<h3 class="bg-danger text-white">게시글 삭제실패!!! <%=bno %>를 찾지 못했습니다!!</h3>
 		<%
 			}
 		%>
-		<a href="jsp01_listMember.jsp" class="btn btn-primary">책 목록</a>
+		<a href="jsp01_listMember.jsp" class="btn btn-primary">목록</a>
 	</div>
 </body>
 </html>

@@ -70,7 +70,7 @@
 <body>
 	<div class="container" align="center">
 	
-		<h1>책 정보 수정하기</h1>
+		<h1>게시글 수정하기</h1>
 	
 		<form action="jsp04_updateMember.jsp" method="post">
 		
@@ -104,8 +104,8 @@
 				
 			</table>
 			<input type="hidden" name="bno" value="<%= bno %>"/>
-			<input type="submit" class="btn btn-info mt-sm-2" value="책 정보수정"/>
-			<a href="jsp01_listMember.jsp" class="btn btn-primary mt-sm-2">책 목록</a>
+			<input type="submit" class="btn btn-info mt-sm-2" value="게시글 수정"/>
+			<a href="jsp01_listMember.jsp" class="btn btn-primary mt-sm-2">목록</a>
 		</form>
 	
 	</div>

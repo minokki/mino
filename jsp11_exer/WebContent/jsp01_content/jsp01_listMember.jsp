@@ -5,6 +5,7 @@
 <%@page import="java.sql.Connection"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +18,14 @@
 <body>
 	<div class="container" align="center">
 		
-		<h1>책 목록 </h1>
+		<h1>게시판 </h1>
 	
 		<div class="row">
 		
 			<table class="table table-boarded table-hover">
 				
 				<tr>
-					<th>번호</th>
+					<th>글 번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -37,7 +38,7 @@
 				    Statement stmt = null;
 				    ResultSet rs = null;
 				    
-					String url = "jdbc:mariadb://localhost:3306/myboard";
+					String url = "jdbc:mariadb://192.168.0.123:3306/myboard";
 					String usr = "root";
 					String pwd = "12345";
 					String sql = "select * from board order by bno";
@@ -49,7 +50,7 @@
 						
 						while(rs.next()) {
 							
-							Integer bno= rs.getInt(1);
+							String bno= rs.getString(1);
 							String subject = rs.getString(2);
 							String writer = rs.getString(3);
 							Date crtdate = rs.getDate(4);
@@ -58,7 +59,6 @@
 					%>
 						<tr>
 							<td><a href="jsp04_updateForm.jsp?bno=<%=bno%>"><%= bno %></a></td>
-							<td><%= bno %></td>
 							<td><%= subject %></td>
 							<td><%= writer %></td>
 							<td><%= crtdate %></td>
@@ -83,7 +83,7 @@
 					}					
 				%>
 			</table>
-			<a href="jsp02_insertForm.jsp" class="btn btn-primary mt-sm-2">책 등록</a>
+			<a href="jsp02_insertForm.jsp" class="btn btn-primary mt-sm-2">등록</a>
 		</div>
 	
 	</div>

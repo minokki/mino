@@ -18,7 +18,7 @@
     Statement stmt = null;
     ResultSet rs = null;
     
-	String url = "jdbc:mariadb://localhost:3306/myboard";
+	String url = "jdbc:mariadb://192.168.0.123:3306/myboard";
 	String usr = "root";
 	String pwd = "12345";
 	String sql = "select * from board where bno = '" + bno + "'";
@@ -63,7 +63,7 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>회원삭제</h1>
+		<h1>게시글 삭제</h1>
 		
 		<form action="jsp03_deleteMember.jsp" method="post">
 			<table class="table table-bordered table-dark table-hover">
@@ -93,8 +93,8 @@
 				</tr>	
 			</table>
 			<input type="hidden" name="bno" value="<%= bno %>">	
-			<input type="submit" class="btn btn-info mt-sm-2" value="회원삭제"/>
-			<a href="jsp01_listMember.jsp" class="btn btn-primary mt-sm-2">책 목록</a>
+			<input type="submit" class="btn btn-info mt-sm-2" value="게시글 삭제"/>
+			<a href="jsp01_listMember.jsp" class="btn btn-primary mt-sm-2">목록</a>
 		</form>
 	</div>
 </body>

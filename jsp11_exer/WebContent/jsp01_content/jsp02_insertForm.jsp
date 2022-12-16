@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>책 등록</h1>
+		<h1>등록</h1>
 		
 		<form action="jsp02_insertMember.jsp" method="post">
 		
@@ -31,20 +32,12 @@
 					<td><input type="text" name="writer" class="form-control" placeholder="작성자를 입력하세요..."></td>
 				</tr>	
 				<tr>
-					<td>작성일</td>
-					<td><input type="date" name="crtdate" class="form-control" placeholder="날짜를 입력하세요..."></td>
-				</tr>	
-				<tr>
-					<td>조회수</td>
-					<td><input type="number" name="readcnt" class="form-control" disabled></td>
-				</tr>	
-				<tr>
 					<td>내용</td>
 					<td><input type="text" name="content" class="form-control" placeholder="내용을 입력하세요..."></td>
 				</tr>	
 			</table>	
-			<input type="submit" class="btn btn-info mt-sm-2" value="책등록"/>
-			<a href="jsp01_listMember.jsp" class="btn btn-primary mt-sm-2">책 목록</a>
+			<input type="submit" class="btn btn-info mt-sm-2" value="등록"/>
+			<a href="jsp01_listMember.jsp" class="btn btn-primary mt-sm-2">목록</a>
 		</form>
 	</div>
 </body>

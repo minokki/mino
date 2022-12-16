@@ -18,12 +18,11 @@
    String content = request.getParameter("content");
    
    Class.forName("org.mariadb.jdbc.Driver"); // db연결작업
-   String url = "jdbc:mariadb://localhost:3306/myboard"; 
+   String url = "jdbc:mariadb://192.168.0.123:3306/myboard"; 
    String usr = "root";
    String pwd = "12345";
-   
-   ResultSet rs_01 = null; // 없어도 된다 그냥 선언만 해놓음
-   String sql="update board set subject=?, writer=?, crtdate=?,readcnt=?,content=? where bno=?";
+ 
+   String sql="update board set subject=?, writer=?, crtdate=?, readcnt=?, content=? where bno =?";
    
    // 입력값
    Connection conn= null;
@@ -36,12 +35,14 @@
    try{
    conn = DriverManager.getConnection(url,usr,pwd); // 커넥션 연결
    pstmt = conn.prepareStatement(sql);
-   pstmt.setString(1, bno);
-   pstmt.setString(2, subject);
-   pstmt.setString(3, writer);
-   pstmt.setString(4, crtdate);
-   pstmt.setString(5, readcnt);
-   pstmt.setString(6, content);
+   
+   pstmt.setString(1, subject);
+   pstmt.setString(2, writer);
+   pstmt.setString(3, crtdate);
+   pstmt.setString(4, readcnt);
+   pstmt.setString(5, content);
+   pstmt.setString(6, bno);
+
    
    // 업데이트 쿼리문 실행
    rs = pstmt.executeUpdate();
@@ -76,7 +77,7 @@
 		<%
 			if(rs > 0) {
 		%>
-				<h3 class="bg-info text-white"><%= bno %>책의 정보가 성공적으로 수정되었습니다!!</h3>
+				<h3 class="bg-info text-white"><%= bno %>게시글이 성공적으로 수정되었습니다!!</h3>
 		<%
 			} else {
 		%>
@@ -85,7 +86,7 @@
 			}
 		%>
 		
-		<a href="jsp01_listMember.jsp" class="btn btn-primary">책 목록</a>
+		<a href="jsp01_listMember.jsp" class="btn btn-primary">목록</a>
 	</div>
 </body>
 </html>
