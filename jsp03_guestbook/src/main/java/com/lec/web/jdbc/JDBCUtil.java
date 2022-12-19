@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+// 기본 설정을 해주는 함수를 구축
+
 public class JDBCUtil {
 
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {

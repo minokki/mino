@@ -36,10 +36,7 @@
 				</tr>	
 			</table>	
 			<input type="submit" class="btn btn-info mt-sm-2" value="회원등록"/>
-			<a href="jsp05_listMember.jsp" class="btn btn-primary mt-sm-2">회원목록</a> 
-			
-			
-			   
+			<a href="jsp05_listMember.jsp" class="btn btn-primary mt-sm-2">회원목록</a>
 		</form>
 	</div>
 </body>

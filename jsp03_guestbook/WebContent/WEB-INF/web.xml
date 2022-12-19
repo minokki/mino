@@ -18,7 +18,7 @@
   	
   	<init-param>
   		<param-name>url</param-name>
-  		<param-value>jdbc:mariadb://localhost:3306/jspstudy</param-value>
+  		<param-value>jdbc:mariadb://localhost:3306/guestbook</param-value>
   	</init-param>
   	
   	<init-param>
