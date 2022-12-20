@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>jsp04_servlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>hello</servlet-name>
+  	<servlet-class>com.lec.servlet.HelloWorld</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>hello</servlet-name>
+  	<url-pattern>/xxx</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>hello</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>test</servlet-name>
+  	<servlet-class>com.lec.servlet.Test</servlet-class>
+  </servlet>
+ 
+    <servlet-mapping>
+  	<servlet-name>test</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  
+  <listener>
+   <listener-class>com.lec.servlet.DBCPInitListener</listener-class>
+  </listener>
+  
+  <context-param>
+   <param-name>dbConnect</param-name>
+   <param-value>
+   	jdbcDriver=org.mariadb.jdbc.Driver
+   	url=jdbc:mariadb://localhost:3306/guestbook
+   	user=root
+   	pass=12345
+   	poolName=guestbook
+   </param-value>
+  </context-param>
+  
+</web-app>

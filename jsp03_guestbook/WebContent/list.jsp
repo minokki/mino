@@ -11,19 +11,18 @@
 	GetMessageListService messageListService = GetMessageListService.getInstance();
 	MessageListView view_data = messageListService.getMessageList(pageNumber);
 	session.setAttribute("page", pageNumber);
-	
-
 %>
+
 <c:set var="view_data" value="<%= view_data %>"/>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">	
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-		crossorigin="anonymous">  	
+		crossorigin="anonymous">  
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   	<style>
@@ -40,7 +39,6 @@
 <body>
 	<div class="container" align="center">
 	
-		<!-- 1. 기본 홈페이지 html 설정 -->
 		<div class="bg jumbotron">
 			<h1 class="text-light">방명록</h1>
 			<p class="text-light">방문해주셔서 감사합니다. 방명록을 작성해 주시기 바랍니다!</p>
@@ -61,7 +59,6 @@
 		</nav>
 		<br />
 		
-		<!-- 2. 값 받아서 방명록 등록 -->
 		<form action="write_message.jsp" method="post" class="form-line">
 			
 			<div class="input-group mb-2 mr-sm-2">
@@ -87,7 +84,6 @@
 			<input type="submit" class="btn btn-primary mb-2" value="방명록작성"/>
 		</form>
 		
-		<!-- 3. 등록한 방명록 글 c태그(if, forEach) 이용해서 목록으로 보기 -->
 		<c:if test="${ view_data.isEmpty() }">
 			<p class="bg-danger text-white">등록된 메시지가 없습니다!!</p>
 		</c:if>
@@ -106,13 +102,13 @@
 			<tbody>
 			<c:forEach var="message" items="${ view_data.messageList }">
 				<tr>
-					
-					<td><a href="update_form.jsp?id=${ message.id }&cp=${ view_data.currentPage }">${ message.id }</a></td>
+					<td>${ message.id }</td>
+					<td><a href="update_form.jsp?id=${message.id }&cp=${view_data.currentPage}">${message.id }</a></td>
 					<td>${ message.guestName }</td>
 					<td>${ message.password }</td>
 					<td>${ message.message }</td>
 					<td>
-						<a href="delete_form.jsp?id=${ message.id }&cp=${ view_data.currentPage }" class="btn btn-danger btn-sm">
+						<a href="delete_form.jsp?id=${message.id }&cp=${view_data.currentPage}" class="btn btn-danger btn-sm">
 							<i class="fas fa-trash-alt"></i>
 						</a>
 					</td>
@@ -122,35 +118,25 @@
 		</table>
 	</div>
 	
-	<!-- 4. 게시글 페이지 이동 버튼 -->
 	<div class="container">
 		<ul class="pagination justify-content-center">
-
-			<c:set var="page" value="${ (empty param.page) ? 1 : param.page }"/>
-			<c:set var="startPage" value="${ page-(page-1)%view_data.perPage }"/>
-			<c:set var="endPage" value="${ (startPage+9) >= view_data.pageTotalCount ? view_data.pageTotalCount : startPage+9}"/>
 		
-			<c:if test="${ startPage != 1 }">
+		<c:set var="page" value="${ (empty param.page) ? 1 :param.page }"/>
+		<c:set var="startPage" value="${ page-(page-1)%view_data.perPage }"/>
+		<c:set var="endPage" value="${ (startPage+9) >= view_data.pageTotalCount ? view_data.pageTotalCount : startPage+9 }"/>
+		
+			<c:if test="${startPage!=1}">
 				<li class="page-item"><a href="list.jsp?page=1" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
-				<li class="page-item"><a href="list.jsp?page=${ startPage - 10 }" class="page-link"><i class="fas fa-backward"></i></a></li>			
+				<li class="page-item"><a href="list.jsp?page=${startPage-10 }" class="page-link"><i class="fas fa-backward"></i></a></li>
 			</c:if>
-			
 			<c:forEach var="page_num" begin="${ startPage }" end="${ endPage }">
-				<li class="page-item"><a href="list.jsp?page=${ page_num }" class="page-link">${ page_num }</a></li>
+				<li class="page-item"><a href="list.jsp?page=${page_num}" class="page-link">${page_num }</a></li>	
 			</c:forEach>
-			
-			
-			<c:if test="${ endPage < view_data.pageTotalCount }">
-				<li class="page-item"><a href="list.jsp?page=${ endPage + 1 }" class="page-link"><i class="fas fa-forward"></i></a></li>
-				<li class="page-item"><a href="list.jsp?page=${ view_data.pageTotalCount }" class="page-link"><i class="fas fa-fast-forward"></i></a></li>	
+			<c:if test="${endPage<view_data.pageTotalCount }">
+				<li class="page-item"><a href="list.jsp?page=${endPage+1 }" class="page-link"><i class="fas fa-forward"></i></a></li>
+				<li class="page-item"><a href="list.jsp?page=${view_data.pageTotalCount }" class="page-link"><i class="fas fa-fast-forward"></i></a></li>
 			</c:if>
-			
 		</ul>
 	</div>
-
-	
-	<!-- 5.  -->
-	
-	
 </body>
 </html>

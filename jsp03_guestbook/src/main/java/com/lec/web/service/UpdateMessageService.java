@@ -45,6 +45,7 @@ public class UpdateMessageService {
 			throw e;
 		} finally {
 			JDBCUtil.close(conn, null, null);
+			
 		}
 	}
 }
