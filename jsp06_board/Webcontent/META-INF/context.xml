@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource 
+		name="jdbc/Board"
+		auth="Container"
+		type="javax.sql.DataSource"
+		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+		driverClassName="org.mariadb.jdbc.Driver"
+		url="jdbc:mariadb://localhost:3306/board"
+		username="root"
+		password="12345"
+		maxActive="50"
+	/>
+<!-- 
+	1. name    : JNDI로 호출될 이름을 설정, 접근방법 java:comp/env/jdbc/Board
+	2. auth    : DBCP을 관리할 관리자를 지정(Container or Application)
+	3. type    : 해당 resource의 return type(객체의 타입), DataSource는 Connection객체를 리턴
+	4. factory : dbcp를 관리하는 클래스(tomcat에 기본적으로 존재하는 클래스)
+	             여기에 dbcp클래스를 직접지정해도 가능하지만 Factory클래스를 이용하면
+	             좀더 안정적으로 dbcp를 관리할 수가 있다.
+	5. driverClassName : JDBC를 이용하기 위한 드라이버 클래스
+	6. url : db접속 url주소
+	7. username : db계정명
+	8. password : db계정 비밀번호
+	9. maxActive: 최대 접속 허용 갯수
+   10. maxIdle  : DB pool에 여분으로 남겨지는 최대 Connection갯수
+   11. maxWait  : DB연결이 반환되는 timeout의 최대 대기 시간(-1은 무한대기)
+   12. removeAbandoned : Connection이 잘못 관리되어 버려진 Connection을 찾아서 재활용할지 여부
+   13. removeAbandonedTimeOut : 버려진 Connection으로 인식할 기본시간을 설정
+                               (초단위로 해당시간이 경과되면 쓰레기 Connection을 인식)
+-->	
+</Context>
+
+
+
+
+
+
+
+
+
+
