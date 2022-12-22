@@ -11,7 +11,7 @@ public class BoardWriteService {
 	public boolean registerBoard(BoardBean board) {
 		
 		boolean isWriteSuccess = false;
-		//System.out.println("글쓰기 서비스 ==> " + board.toString());
+		// System.out.println("글쓰기 서비스 ==> " + board.toString());
 		
 		Connection conn = JDBCUtility.getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();

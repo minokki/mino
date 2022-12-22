@@ -21,7 +21,7 @@ public class BoardWriteAction implements Action {
 		ActionFoward forward = null;
 		BoardBean board = null;
 		String realFolder = "";
-		String saveFolder = "C:\\Users\\ezen\\Desktop\\mh_db\\99.temp";
+		String saveFolder = "d:/lec03/99.temp/upload";
 		int filesize = 1024*1024*5;
 		
 		String p = req.getParameter("p");
