@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.board.action.Action;
+import com.lec.board.action.BoardDeleteAction;
 import com.lec.board.action.BoardDetailAction;
 import com.lec.board.action.BoardListAction;
 import com.lec.board.action.BoardModifyAction;
 import com.lec.board.action.BoardModifyFormAction;
+import com.lec.board.action.BoardReplyAction;
+import com.lec.board.action.BoardReplyFormAction;
 import com.lec.board.action.BoardWriteAction;
 import com.lec.board.vo.ActionFoward;
 
@@ -63,31 +66,47 @@ public class BoardController extends HttpServlet{
 		} else if(command.equals("/boardDetail.bo")) {
 			action = new BoardDetailAction();
 			try { forward = action.execute(req, res); } catch (Exception e) { e.printStackTrace(); }
-		
-		
-		
 		} else if(command.equals("/boardModifyForm.bo")) {
-		
 			action = new BoardModifyFormAction();
 			try { forward = action.execute(req, res); } catch (Exception e) { e.printStackTrace(); }
-			
-			
-			
-			
-			
 		} else if(command.equals("/boardModify.bo")) {
 			action = new BoardModifyAction();
 			try { forward = action.execute(req, res); } catch (Exception e) { e.printStackTrace(); }
+		} else if(command.equals("/boardDeleteForm.bo")) {
+			forward = new ActionFoward();
+			forward.setPath("/board/board_delete.jsp?p=" + p + "&f=" + f + "&q=" + q);				
+		} else if(command.equals("/boardDelete.bo")) {
+			action = new BoardDeleteAction();
+			try { forward = action.execute(req, res); } catch (Exception e) { e.printStackTrace(); }			
+		} else if(command.equals("/boardReplyForm.bo")) {
+			action = new BoardReplyFormAction();
+			try { forward = action.execute(req, res); } catch (Exception e) { e.printStackTrace(); }			
+
+		} else if(command.equals("/boardReply.bo")) {
+			action = new BoardReplyAction();
+			try { forward = action.execute(req, res); } catch (Exception e) { e.printStackTrace(); }			
+		} else if(command.equals("/download.bo")) {
+			forward = new ActionFoward();
+			forward.setPath("/board/board_download.jsp?p=" + p + "&f=" + f + "&q=" + q);			
+		
+	
 			
 			
 			
+			
+		} else if(command.equals("/error.bo")) {
+			
+			System.out.println("==> xxxxxx " + forward.isRedirect());
+	
+			forward = new ActionFoward();
+			forward.setPath("/board/error.jsp");
+			System.out.println(forward.getPath());
 			
 			
 			
 			
 			
 		}
-		
 		if(forward != null) {
 			if(forward.isRedirect()) {
 				res.sendRedirect(forward.getPath());

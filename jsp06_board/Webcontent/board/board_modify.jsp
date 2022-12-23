@@ -14,6 +14,9 @@
 		q = "";
 	}
 %>
+<c:set var="p" value="<%= p %>"/>
+<c:set var="f" value="<%= f %>"/>
+<c:set var="q" value="<%= q %>"/>
 <!DOCTYPE html>
 <html>
 <head>

@@ -41,7 +41,6 @@
 
 </head>
 <body>
-
 	<div class="container mt-sm-5" align="center">
 	
 		<div class="jumbotron">
@@ -51,14 +50,14 @@
 			</c:if>
 		</div>
 	
-		<form action="" class="form-line">
+		<form action="boardList.bo" class="form-line">
 			<div class="input-group">
 				<select name="f" id="" class="form-control col-sm-2 mr-wm-2">
 					<option ${ (param.f == "board_name") ? "selected" : "" } value="board_name">작성자</option>
 					<option ${ (param.f == "board_subject") ? "selected" : "" } value="board_subject">제목</option>
 				</select>
 				<input type="text" name="q" value="${ param.q }" class="form-control col-sm-8 mr-sm-2" placeholder="검색어를 입력하세요..."/>
-				<button type="button" class="btn btn-primary col-sm-1 mr-sm-2">검색</button>
+				<button type="submit" class="btn btn-primary col-sm-1 mr-sm-2">검색</button>
 				<a href="boardWriteForm.bo?p=${p}&f=${f}&q=${q}" class="btn btn-success col-sm-1">글쓰기</a>
 			</div>
 		</form>
@@ -80,13 +79,30 @@
 				<tr>
 					<td>${board.getBoard_num()}</td>
 					<td>
+						<c:if test="${board.getBoard_re_lev() !=0 }" >
+							┗
+							<c:forEach var="i" begin="1" end="${board.getBoard_re_lev()}">
+								━
+							</c:forEach>
+							[RE]
+						</c:if>
 						<a href="boardDetail.bo?board_num=${board.getBoard_num()}&p=${p}&f=${f}&q=${q}">${board.getBoard_subject()}</a>
 						<span class="badge badge-danger ml-sm-3">${board.getBoard_readcount()}</span>
 					</td>
 					<td>${board.getBoard_name()}</td>
 					<td>${board.getBoard_date()}</td>
-					<td>${board.getBoard_file()}</td>
-					<td align="center"><a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+							
+					<td>
+						<c:if test="${!empty board.getBoard_file()}">
+							<a href="download.bo?board_num=${board.getBoard_num()}&p=${p}&f=${f}&q=${q}&fn=${board.getBoard_file()}" 
+							   class="btn btn-success"><i class="fas fa-file-download">   ${board.getBoard_file()}</i>
+							</a>
+						</c:if>
+					</td>
+
+					<td align="center"><a href="boardDeleteForm.bo?board_num=${board.getBoard_num()}&p=${p}&f=${f}&q=${q}" class="btn btn-danger">
+						<i class="fas fa-trash-alt"></i></a>
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>

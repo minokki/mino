@@ -13,16 +13,6 @@
 
 </head>
 <body>
-	<div class="container" align="center">
-	
-		<div class="jumbotron">
-		
-			<h1>답변형게시판</h1>
-			<p>게시판관리페이지 입니다. 글쓰기를 하려면 <strong class="text-danger">게시판글쓰기버튼</strong>을
-			클릭하세요!</p>
-		</div>
-		<a href="boardWriteForm.bo?p=1&f=board_name&q=" class="btn btn-success mr-sm-2">게시판글쓰기</a>
-		<a href="boardList.bo?p=1&f=board_name&q=" class="btn btn-success">게시판글 목록보기</a>
-	</div>
+	<h3 class="bg-danger text-white" align="center"><%= request.getAttribute("msg") %></h3>
 </body>
 </html>

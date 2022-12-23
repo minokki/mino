@@ -1,5 +1,6 @@
 package com.lec.board.action;
 
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletContext;
@@ -21,7 +22,7 @@ public class BoardWriteAction implements Action {
 		ActionFoward forward = null;
 		BoardBean board = null;
 		String realFolder = "";
-		String saveFolder = "d:/lec03/99.temp/upload";
+		String saveFolder = "C:\\Users\\ezen\\Desktop\\mh_db\\99.temp\\";
 		int filesize = 1024*1024*5;
 		
 		String p = req.getParameter("p");
@@ -42,22 +43,38 @@ public class BoardWriteAction implements Action {
 			board.setBoard_pass(multi.getParameter("board_pass"));
 			board.setBoard_subject(multi.getParameter("board_subject"));
 			board.setBoard_content(multi.getParameter("board_content"));
-			board.setBoard_file(multi.getParameter(multi.getOriginalFileName((String) multi.getFileNames().nextElement())));
+			board.setBoard_file(multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
 			
-			// System.out.println("====> " + board.toString());
+			
+			System.out.println("========> " + board.getBoard_file());
+			
+			
 			BoardWriteService boardWriteService = new BoardWriteService();
-			boardWriteService.registerBoard(board);
+			boolean isWriteSuccess = boardWriteService.registerBoard(board);
 			
+			if(isWriteSuccess) {
+				forward = new ActionFoward();
+				forward.setRedirect(true);
+				forward.setPath("boardList.bo?p=" + p + "&f=" + f + "&q=" + q);				
+			} else {
+				res.setContentType("text/html; charset=UTF-8" );
+				PrintWriter out = res.getWriter();
+				out.println("<script>");
+				out.println("   alert('게시글 등록이 실패했습니다!!')");
+				out.println("   history.back();");
+				out.println("</script>");				
+			}			
 		} catch (Exception e) {
-			// TODO: handle exception
+			
+			e.printStackTrace();
+			
+			req.setAttribute("msg", "파일크기가 5MB를 초과했습니다!!" + e.getMessage());
+			forward = new ActionFoward();
+			forward.setRedirect(false);
+			forward.setPath("error.bo?p=" + p + "&f=" + f + "&q=" + q);	
 		}
-		
-		
-		
-		
-		return null;
+			return forward;
 	}
-
 }
 
 

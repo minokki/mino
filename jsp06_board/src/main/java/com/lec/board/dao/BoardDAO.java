@@ -182,10 +182,124 @@ public class BoardDAO {
 		}
 		return board;
 	}
+	
+	// 글작성자확인
+	public boolean isBoardWriter(int board_num, String pass) {
+		
+		boolean isWriter = false;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from board where board_num = " + board_num;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			if(pass.equals(rs.getString("board_pass"))) isWriter = true;
+		} catch (Exception e) {
+			System.out.println("글 작성자의 비밀번호가 틀립니다. 다시 입력하세요!! " + e.getMessage());
+		} finally {
+			JDBCUtility.close(null, pstmt, rs);
+		}
+		return isWriter;
+	}
 
 	// 글 수정하기
+	public int updateBoard(BoardBean board) {
+		
+		int updateCount = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = "update board set board_subject=?, board_content=?, board_file=? "
+				   + " where board_num = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board.getBoard_subject());
+			pstmt.setString(2, board.getBoard_content());
+			pstmt.setString(3, board.getBoard_file());
+			pstmt.setInt(4, board.getBoard_num());
+			updateCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("게시글 수정이 실패했습니다!! " + e.getMessage());
+		} finally {
+			JDBCUtility.close(null, pstmt, null);
+		}
+		return updateCount;
+	}
+
 	// 글 삭제하기
+	public int deleteBoard(int board_num) {
+		
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = "delete from board where board_num = " + board_num;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			deleteCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("게시글 삭제에 실패 했습니다!! : " + e.getMessage());
+		} finally {
+			JDBCUtility.close(null, pstmt, null);
+		}
+		return deleteCount;
+	}
+
 	// 댓글 쓰기
+	public int insertReplyBoard(BoardBean board) {
+		
+		int insertCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "update board set board_re_seq = board_re_seq + 1 "
+				   + " where board_re_ref = ? and board_re_seq > ?";
+		
+		int num = 0;
+		int re_ref = board.getBoard_re_ref();
+		int re_lev = board.getBoard_re_lev();
+		int re_seq = board.getBoard_re_seq();
+		
+		try {
+			pstmt = conn.prepareStatement("select max(board_num) from board");
+			rs = pstmt.executeQuery();
+			if(rs.next()) num = rs.getInt(1) + 1; else num = 1;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, re_ref);
+			pstmt.setInt(2, re_seq);
+			int updateCount = pstmt.executeUpdate();
+			if(updateCount>0) JDBCUtility.commit(conn);
+			
+			// 댓글등록
+			re_lev += 1;
+			re_seq += 1;
+			sql = "insert into board(board_num, board_name, board_pass, board_subject, board_content, "
+				       + "            board_file, board_re_ref, board_re_lev, board_re_seq, board_readcount, board_date) "
+					   + "       values(?,?,?,?,?,?,?,?,?,?, now())";	
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, board.getBoard_name());
+			pstmt.setString(3, board.getBoard_pass());
+			pstmt.setString(4, board.getBoard_subject());
+			pstmt.setString(5, board.getBoard_content());
+			pstmt.setString(6, "");
+			pstmt.setInt(7, re_ref);
+			pstmt.setInt(8, re_lev);
+			pstmt.setInt(9, re_seq);
+			pstmt.setInt(10, 0);
+			insertCount = pstmt.executeUpdate();			
+		} catch (Exception e) {
+			System.out.println("댓글쓰기 실패!! : " + e.getMessage());
+		} finally {
+			JDBCUtility.close(null, pstmt, rs);
+		}
+		return insertCount;
+	}
+
 	
 }
 
