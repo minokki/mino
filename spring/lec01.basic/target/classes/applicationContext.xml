@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ 	<bean id="lg" class="com.lec.basic.poly.LgTv" scope="singleton"></bean>
+ 	
+ 	<!-- 
+ 		init-method : 초기화작업 메서드
+ 		destroy-method : 객체삭제전 작업 메서드
+ 		scope : singleton(기본은 싱글톤객체로 생성)
+ 	 -->
+</beans>

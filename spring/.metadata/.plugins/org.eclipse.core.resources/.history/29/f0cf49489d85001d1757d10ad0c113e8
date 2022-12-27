@@ -1,0 +1,16 @@
+package com.lec.web;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class BoardMain {
+
+	public static void main(String[] args) {
+		AbstractApplicationContext factory = new  GenericXmlApplicationContext("annotationContext.xml");
+		BoardService boardService = (BoardService) factory.getBean("boardService");
+		
+		factory.close();
+
+	}
+
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="lec01.basic"/>
+<aop-project name="lec02.board"/>
+</aop-reference-model>

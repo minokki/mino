@@ -1,0 +1,81 @@
+package com.lec.user;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import org.springframework.stereotype.Repository;
+
+import com.lec.web.JDBCUtility;
+
+@Repository("userDAO")
+public class UserDAO {
+	
+	private Connection conn = null;
+	private PreparedStatement stmt = null;
+	private ResultSet rs = null;
+	
+	private String insert = "insert into users(id, password, name) "
+			              + " values(?, ?, ?)";
+	private String update = "update users set password=?, name=? where id=?";
+	private String delete = "delete from users where id=?";
+	private String select = "select * from users where id=?";
+	private String ulist = "select * from users order by id desc";
+
+	
+	public UserDAO() {
+		System.out.println("==> UserDAO 객체생성!!!");
+	}
+	
+	public void insertUser(UserVO vo) {
+		try {
+			conn = JDBCUtility.getConnection();
+			stmt = conn.prepareStatement(insert);
+			
+			stmt.setString(1, vo.getId());
+			stmt.setString(2, vo.getPassword());
+			stmt.setString(3, vo.getName());
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtility.close(conn, stmt, rs);
+		}
+		
+	}
+
+	public void deleteUser(UserVO vo) {
+		try {
+			conn = JDBCUtility.getConnection();
+			stmt = conn.prepareStatement(delete);
+			
+			stmt.setString(1,vo.getId());
+			stmt.setString(2,vo.getPassword());
+			stmt.setString(3,vo.getName());
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtility.close(conn, stmt, rs);
+		}
+		
+	}
+
+	public void updateUser(UserVO vo) {
+		try {
+			conn = JDBCUtility.getConnection();
+			stmt = conn.prepareStatement(update);
+			stmt.setString(1, vo.getId());
+			stmt.setString(2, vo.getPassword());
+			stmt.setString(3, vo.getName());
+			
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtility.close(conn, stmt, rs);
+		}
+		
+	}
+}

@@ -1,0 +1,18 @@
+package com.lec.user;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.lec.web.BoardVO;
+
+@Service
+public interface UserService {
+	
+	void insertUser(BoardVO vo);
+	void deleteUser(BoardVO vo);
+	void updateUser(BoardVO vo);
+	UserVO getUser(BoardVO vo);
+	List<BoardVO> getBoardList(BoardVO vo);
+	
+}

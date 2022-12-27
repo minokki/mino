@@ -1,0 +1,42 @@
+package com.lec.user;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service("userService")
+public class UserServiceImpl implements UserService{
+
+	@Autowired
+	private UserDAO userDAO;
+	@Override
+	public void insertUser(UserVO vo) {
+		
+	}
+
+	@Override
+	public void deleteUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public UserVO getUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserVO> getUserList(UserVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,24 @@
+package com.lec.user;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import org.springframework.stereotype.Repository;
+
+@Repository("userDAO")
+public class UserDAO {
+	
+	private Connection conn = null;
+	private PreparedStatement stmt = null;
+	private ResultSet rs = null;
+	
+	private String insert = "insert into users(id, password, name, role) "
+			              + " values(?, ?, ?, ?)";
+	private String update = "update users set password=?, name=? where id=?";
+	private String delete = "delete from users where id=?";
+	private String select = "select * from users where id=?";
+	private String ulist = "select * from users order by id desc";
+
+	
+}

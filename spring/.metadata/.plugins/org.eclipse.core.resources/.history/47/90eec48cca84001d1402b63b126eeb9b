@@ -1,0 +1,11 @@
+package com.lec.basic.poly;
+
+public class SamsumgTv {
+
+	public void powerOn() {	System.out.println("Samsung TV - powerOn!!");	}
+	public void powerOff() {	System.out.println("Samsung TV - powerOn!!");	}
+	public void powerON() {	System.out.println("Samsung TV - powerOn!!");	}
+	public void powerON() {	System.out.println("Samsung TV - powerOn!!");	}
+	public void powerON() {	System.out.println("Samsung TV - powerOn!!");	}
+
+}

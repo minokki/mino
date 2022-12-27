@@ -1,0 +1,13 @@
+package com.lec.basic.poly;
+
+public class TvUwer1 {
+
+	public static void main(String[] args) {
+		
+		BeanFactory factory = new BeanFactory();
+		
+		Tv tv = (Tv) factory.getBean(args[0]);
+
+	}
+
+}

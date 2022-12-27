@@ -1,0 +1,23 @@
+package com.lec.user;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.lec.web.BoardService;
+
+public class UserMain {
+
+	public static void main(String[] args) {
+		AbstractApplicationContext factory = new  GenericXmlApplicationContext("UserContext.xml");
+		UserService userService =  (UserService) factory.getBean("userService");
+		
+		UserVO user = new UserVO();
+		
+		user.setId("ddd");
+		user.setPassword("12345");
+		user.setName("ddd");
+		userService.insertUser(user);
+		
+		factory.close();
+	}
+}

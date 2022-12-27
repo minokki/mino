@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\Users\ezen\Desktop\mh_db\05.spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4212781023.index
+\lec01.basic\src\main\java
+C:\Users\ezen\Desktop\mh_db\05.spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\786256795.index
+\lec02.board\src\main\java

@@ -1,0 +1,9 @@
+package com.lec.user;
+
+public class UserVO {
+
+	private String id;
+	private String password;
+	private String name;
+	private String roll;
+}

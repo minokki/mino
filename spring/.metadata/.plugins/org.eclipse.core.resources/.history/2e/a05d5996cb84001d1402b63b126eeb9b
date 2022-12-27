@@ -1,0 +1,10 @@
+package com.lec.basic.poly;
+
+public class SamsumgTv implements Tv{
+
+	public void powerOn() {	System.out.println("Samsung TV - powerOn!!");	}
+	public void powerOff() {	System.out.println("Samsung TV - powerOff!!");	}
+	public void volumUp() {	System.out.println("Samsung TV - volumUp!!");	}
+	public void volumOff() {	System.out.println("Samsung TV - volumOff!!");	}
+	
+}

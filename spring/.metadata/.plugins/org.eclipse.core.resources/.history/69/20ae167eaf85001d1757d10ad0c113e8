@@ -1,0 +1,5 @@
+package com.lec.web;
+
+public class UserService {
+
+}

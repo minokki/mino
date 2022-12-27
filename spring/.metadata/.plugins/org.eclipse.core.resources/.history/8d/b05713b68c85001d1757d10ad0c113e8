@@ -1,0 +1,32 @@
+package com.lec.basic.anno;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component("tv")   // @Component 어노테이션은 클래스위에 생성( 객체생성)
+public class LGTV implements TV{
+    
+	//@Autowired는 변수위나 메서드위에 선언할수 있다.
+	//변수위에 선언된 경우는 @Qualfier과 같이 사용할수 있다.
+	//@Resource = Autowired + Qualfier 
+	@Autowired
+	@Qualifier("sony")
+	@Res
+	private Speaker speaker;
+	public LGTV() {
+		System.out.println("==> @Annotation 기반  LGTV 객체 생성!!!");
+	}
+	
+	@Autowired
+	@Override
+	public void powerOn() {	}
+	@Override
+	public void powerOff() {	}
+	@Override
+	public void volumnUp() {	}
+	@Override
+	public void volumnDown() {	}
+
+}
+
