@@ -1,0 +1,10 @@
+package com.lec.mvc.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.lec.mvc.service.UserService;
+
+@Service("userService")
+public class UserServiceImpl implements UserService{
+
+}

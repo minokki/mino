@@ -1,0 +1,10 @@
+package com.lec.mvc.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.lec.mvc.service.UserService;
+
+@Controller
+public class Logincontroller implements UserService{
+
+}

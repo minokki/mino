@@ -1,0 +1,5 @@
+package com.lec.mvc.service;
+
+public interface UserService {
+
+}

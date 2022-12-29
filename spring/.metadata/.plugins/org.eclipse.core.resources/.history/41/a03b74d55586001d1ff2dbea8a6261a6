@@ -1,0 +1,5 @@
+package com.lec.mvc.db;
+
+public class JDBCUtility {
+
+}

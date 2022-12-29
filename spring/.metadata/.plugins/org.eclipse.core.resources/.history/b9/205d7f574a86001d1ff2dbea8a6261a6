@@ -1,0 +1,5 @@
+package com.lec.mvc.controller;
+
+public class UserController {
+
+}

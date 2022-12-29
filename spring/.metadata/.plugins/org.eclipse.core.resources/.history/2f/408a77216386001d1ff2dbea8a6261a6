@@ -1,0 +1,27 @@
+package com.lec.mvc.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.lec.mvc.dao.UserDAO;
+import com.lec.mvc.vo.UserVO;
+
+@Controller
+public class UserController {
+	
+	@Autowired
+	private UserDAO userDAO;
+	
+	@RequestMapping("getUserList.do")
+	public String getUserList(UserVO userVO, Model model,
+			@RequestParam(defaultValue="1") int p ,
+			@RequestParam(defaultValue="10") int perPage) {
+		
+		//PageInfo pageInfo  
+		return null;
+	}
+		
+}

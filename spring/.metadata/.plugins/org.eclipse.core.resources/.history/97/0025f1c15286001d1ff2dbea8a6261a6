@@ -1,0 +1,24 @@
+package com.lec.mvc.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.lec.mvc.vo.UserVO;
+
+@Controller
+public class Logincontroller {
+	@RequestMapping(value="/login.do", method= RequestMethod.GET)
+		public String login(UserVO user) {
+		
+		user.setId("regular@naver.com");
+		user.setPassword("12345");
+		user.setName("고민호");
+		
+		
+			return "/login/login.jsp";
+		}
+	
+	
+}
