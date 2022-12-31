@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lec.mvc.service.UserService;
+import com.lec.mvc.vo.PageInfo;
 import com.lec.mvc.vo.UserVO;
 
 @Controller
@@ -21,7 +22,8 @@ public class UserController {
 			@RequestParam(defaultValue="1") int p,
 			@RequestParam(defaultValue="10") int perPage) {
 	
-		// PageInfo pageInfo 
+		PageInfo pageInfo = userService.getPageInfo(p, perPage);
+		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("userList", userService.getUserList(p, perPage));
 		return "user/user_list.jsp";
 	}
@@ -40,6 +42,17 @@ public class UserController {
 	@RequestMapping(value="/deleteUser.do", method=RequestMethod.POST)
 	public String deleteUser(@RequestParam String id) {
 		int deleteCount = userService.deleteUser(id);
+		return "getUserList.do";
+	}
+	
+	@RequestMapping(value="/updateUser.do", method=RequestMethod.GET)
+	public String updateUser(Model model, @RequestParam String id ) {
+		model.addAttribute("user", userService.selectUser(id));
+		return "user/user_update.jsp";
+	}
+	@RequestMapping(value="/updateUser.do", method=RequestMethod.POST)
+	public String updateUser(UserVO user) {
+		int updateCount = userService.updateUser(user);
 		return "getUserList.do";
 	}
 }

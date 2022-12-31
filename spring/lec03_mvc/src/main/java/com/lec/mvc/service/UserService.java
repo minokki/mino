@@ -9,7 +9,7 @@ public interface UserService {
 
 	int insertUser(UserVO user);
 	int deleteUser(String id);
-	int updateUser(String id);
+	int updateUser(UserVO user);
 	UserVO selectUser(String id);
 	List<UserVO> getUserList(int currentPage,int perPage);
 	PageInfo getPageInfo(int currentPage,int perPage);

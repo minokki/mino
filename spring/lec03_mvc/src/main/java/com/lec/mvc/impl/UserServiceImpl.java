@@ -27,15 +27,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int updateUser(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateUser(UserVO user) {
+		return userDAO.updateUser(user);
 	}
 
 	@Override
 	public UserVO selectUser(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDAO.getUser(id);
 	}
 
 	@Override
@@ -45,8 +43,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public PageInfo getPageInfo(int currentPage, int perPage) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDAO.getPageInfo("user",currentPage, perPage);
 	}
 
 }
